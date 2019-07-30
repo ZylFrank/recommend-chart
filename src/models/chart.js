@@ -5,15 +5,26 @@ export default {
 
   state: {
     storyAndNumData: [],
+    query: {},
+    loading: false,
   },
 
   effects: {
-    *fetchStory(_, { call, put }) {
-      const response = yield call(getStoryAndNum);
+    *fetchStory({ payload }, { call, put }) {
+      const { query } = payload;
+      yield put({
+        type: 'save',
+        payload: {
+          query,
+          loading: true,
+        },
+      })
+      const response = yield call(getStoryAndNum, query);
       yield put({
         type: 'save',
         payload: {
           storyAndNumData: response.result,
+          loading: false,
         },
       })
     },
@@ -28,14 +39,18 @@ export default {
     },
   },
 
-  // subscriptions: {
-  //   setup({ history }) {
-  //     // Subscribe history(url) change, trigger `load` action if pathname is `/`
-  //     return history.listen(({ pathname, search }) => {
-  //       if (typeof window.ga !== 'undefined') {
-  //         window.ga('send', 'pageview', pathname + search);
-  //       }
-  //     });
-  //   },
-  // },
+  subscriptions: {
+    setup({ history, dispatch }) {
+      return history.listen(({ pathname, query }) => {
+        if (pathname === '/dashboard/analysis') {
+          dispatch({
+            type: 'fetchStory',
+            payload: {
+              query
+            },
+          })
+        }
+      });
+    },
+  },
 };
