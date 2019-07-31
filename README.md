@@ -4,6 +4,7 @@
 ### 项目启动
 
 ```
+cp .envsample .env
 yarn install
 yarn start
 ```
