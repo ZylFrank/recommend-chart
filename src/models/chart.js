@@ -1,4 +1,4 @@
-import { getStoryAndNum } from '@/services/chart';
+import { getStoryAndNum, getClickRate } from '@/services/chart';
 
 export default {
   namespace: 'chart',
@@ -7,6 +7,7 @@ export default {
     storyAndNumData: [],
     query: {},
     loading: false,
+    clickRateData: [],
   },
 
   effects: {
@@ -24,6 +25,23 @@ export default {
         type: 'save',
         payload: {
           storyAndNumData: response.result,
+          loading: false,
+        },
+      })
+    },
+    *fetchClickRate({ payload }, { call, put }){
+      yield put({
+        type: 'save',
+        payload: {
+          loading: true,
+          query: payload,
+        },
+      });
+      const lintChart = yield call(getClickRate, payload);
+      yield put({
+        type: 'save',
+        payload: {
+          clickRateData: lintChart,
           loading: false,
         },
       })
@@ -47,6 +65,14 @@ export default {
             type: 'fetchStory',
             payload: {
               query
+            },
+          })
+        }
+        if (pathname === '/dashboard/clickRate') {
+          dispatch({
+            type: 'fetchClickRate',
+            payload: {
+              ...query
             },
           })
         }

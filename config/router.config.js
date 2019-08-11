@@ -17,6 +17,11 @@ export default [
             name: 'analysis',
             component: './Dashboard/RoseChart',
           },
+          {
+            path: '/dashboard/clickRate',
+            name: 'clickRate',
+            component: './Dashboard/ClickRate',
+          },
         ],
       },
       {

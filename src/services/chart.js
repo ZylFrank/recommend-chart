@@ -7,3 +7,7 @@ export async function getStoryAndNum(params) {
     data: params,
   });
 }
+
+export async function getClickRate() {
+  return request('/api/clickRate');
+}

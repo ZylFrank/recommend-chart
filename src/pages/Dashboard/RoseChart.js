@@ -19,13 +19,6 @@ const FormItem = Form.Item;
 }))
 @Form.create()
 class Colorrose extends PureComponent {
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch({
-      type: 'chart/fetchStory'
-    });
-  }
-
   render() {
     const { chart, form, history } = this.props;
     const { getFieldDecorator, validateFields, resetFields } = form;
