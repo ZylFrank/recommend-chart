@@ -15,11 +15,13 @@ export default [
           {
             path: '/dashboard/analysis',
             name: 'analysis',
+            icon: 'pie-chart',
             component: './Dashboard/RoseChart',
           },
           {
             path: '/dashboard/clickRate',
             name: 'clickRate',
+            icon: 'line-chart',
             component: './Dashboard/ClickRate',
           },
         ],

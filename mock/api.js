@@ -4,7 +4,7 @@ const titles = [
   'Alipay',
   'Angular',
   'Ant Design',
-  'Ant Design Pro',
+  'Li Yuan',
   'Bootstrap',
   'React',
   'Vue',
@@ -14,7 +14,7 @@ const avatars = [
   'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png', // Alipay
   'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png', // Angular
   'https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png', // Ant Design
-  'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png', // Ant Design Pro
+  'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png', // Li Yuan
   'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png', // Bootstrap
   'https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png', // React
   'https://gw.alipayobjects.com/zos/rmsportal/ComBAopevLwENQdKWiIn.png', // Vue
@@ -323,125 +323,125 @@ function getFakeCaptcha(req, res) {
 
 const getClickRate= [
   {
-      month: "Jan",
-      city: "Tokyo",
-      temperature: 7
+      date: "周一",
+      type: "会员算法策略",
+      stack: 0.1062
   },
   {
-      month: "Jan",
-      city: "London",
-      temperature: 3.9
+    date: "周一",
+    type: "会员运营策略",
+    stack: 0.0975
   },
   {
-      month: "Feb",
-      city: "Tokyo",
-      temperature: 6.9
+    date: "周一",
+    type: "非会员算法策略",
+    stack: 0.156
   },
   {
-      month: "Feb",
-      city: "London",
-      temperature: 4.2
+    date: "周一",
+    type: "非会员运营策略",
+    stack: 0.1167
   },
   {
-      month: "Mar",
-      city: "Tokyo",
-      temperature: 9.5
+    date: "周二",
+    type: "会员算法策略",
+    stack: 0.1145
   },
   {
-      month: "Mar",
-      city: "London",
-      temperature: 5.7
+    date: "周二",
+    type: "会员运营策略",
+    stack: 0.0985
   },
   {
-      month: "Apr",
-      city: "Tokyo",
-      temperature: 14.5
+    date: "周二",
+    type: "非会员算法策略",
+    stack: 0.1585
   },
   {
-      month: "Apr",
-      city: "London",
-      temperature: 8.5
+    date: "周二",
+    type: "非会员运营策略",
+    stack: 0.1357
   },
   {
-      month: "May",
-      city: "Tokyo",
-      temperature: 18.4
+    date: "周三",
+    type: "会员算法策略",
+    stack: 0.1043,
   },
   {
-      month: "May",
-      city: "London",
-      temperature: 11.9
+    date: "周三",
+    type: "会员运营策略",
+    stack: 0.0919,
   },
   {
-      month: "Jun",
-      city: "Tokyo",
-      temperature: 21.5
+    date: "周三",
+    type: "非会员算法策略",
+    stack: 0.157,
   },
   {
-      month: "Jun",
-      city: "London",
-      temperature: 15.2
+    date: "周三",
+    type: "非会员运营策略",
+    stack: 0.1432,
   },
   {
-      month: "Jul",
-      city: "Tokyo",
-      temperature: 25.2
+    date: "周四",
+    type: "会员算法策略",
+    stack: 0.1087,
   },
   {
-      month: "Jul",
-      city: "London",
-      temperature: 17
+    date: "周四",
+    type: "会员运营策略",
+    stack: 0.0917,
   },
   {
-      month: "Aug",
-      city: "Tokyo",
-      temperature: 26.5
+    date: "周四",
+    type: "非会员算法策略",
+    stack: 0.1416,
   },
   {
-      month: "Aug",
-      city: "London",
-      temperature: 16.6
+    date: "周四",
+    type: "非会员运营策略",
+    stack: 0.0831,
   },
   {
-      month: "Sep",
-      city: "Tokyo",
-      temperature: 23.3
+    date: "周五",
+    type: "会员算法策略",
+    stack: 0.0955,
   },
   {
-      month: "Sep",
-      city: "London",
-      temperature: 14.2
+    date: "周五",
+    type: "会员运营策略",
+    stack: 0.081,
   },
   {
-      month: "Oct",
-      city: "Tokyo",
-      temperature: 18.3
+    date: "周五",
+    type: "非会员算法策略",
+    stack: 0.1361,
   },
   {
-      month: "Oct",
-      city: "London",
-      temperature: 10.3
+    date: "周五",
+    type: "非会员运营策略",
+    stack: 0.1023,
   },
   {
-      month: "Nov",
-      city: "Tokyo",
-      temperature: 13.9
+    date: "周六",
+    type: "会员算法策略",
+    stack: 0.0998
   },
   {
-      month: "Nov",
-      city: "London",
-      temperature: 6.6
+    date: "周六",
+    type: "会员运营策略",
+    stack: 0.0831,
   },
   {
-      month: "Dec",
-      city: "Tokyo",
-      temperature: 9.6
+    date: "周六",
+    type: "非会员算法策略",
+    stack: 0.1372,
   },
   {
-      month: "Dec",
-      city: "London",
-      temperature: 4.8
-  }
+    date: "周六",
+    type: "非会员运营策略",
+    stack: 0.1007
+  },
 ];
 
 export default {

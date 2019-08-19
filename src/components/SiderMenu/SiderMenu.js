@@ -73,14 +73,14 @@ export default class SiderMenu extends PureComponent {
             onCollapse(collapse);
           }
         }}
-        width={256}
+        width={230}
         theme={theme}
         className={siderClassName}
       >
         <div className={styles.logo} id="logo">
           <Link to="/">
             <img src={logo} alt="logo" />
-            <h1>{title}</h1>
+            <h1 style={{ textAlign: "center" }}>{title}</h1>
           </Link>
         </div>
         <Suspense fallback={<PageLoading />}>
@@ -89,7 +89,7 @@ export default class SiderMenu extends PureComponent {
             mode="inline"
             handleOpenChange={this.handleOpenChange}
             onOpenChange={this.handleOpenChange}
-            style={{ padding: '16px 0', width: '100%' }}
+            style={{ padding: '16px 0', width: '100%', background: '#000b17' }}
             {...defaultProps}
           />
         </Suspense>

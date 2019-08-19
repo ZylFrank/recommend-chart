@@ -54,8 +54,8 @@ class ClickRate extends PureComponent {
         <div className="tableListForm">
           <Form onSubmit={onSubmit}>
             <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
-              <Col md={8} sm={24}>
-                <FormItem label="会员类型">
+              <Col md={6} sm={24}>
+                <FormItem label="用户类型">
                   {getFieldDecorator('userType', {
                     initialValue: parseInt(query.userType, 10) || '',
                   })(                  
@@ -66,7 +66,24 @@ class ClickRate extends PureComponent {
                   )}
                 </FormItem>
               </Col>
-              <Col md={8} sm={24}>
+              <Col md={6} sm={24}>
+                <FormItem label="纬度">
+                  {getFieldDecorator('dateRange', {
+                    initialValue: ''
+                  })(                  
+                    <Select style={{width: '100%'}}>
+                      <Option key={0} value='user_click_one_rate'>点击一个内容</Option>
+                      <Option key={1} value='user_click_two_rate'>点击二个内容</Option>
+                      <Option key={2} value='user_click_three_rate'>点击三个内容</Option>
+                      <Option key={3} value='user_click_have_rate'>有过点击行为</Option>
+                      <Option key={4} value='user_click_site_zero_rate'>点击第一个内容</Option>
+                      <Option key={5} value='user_click_site_one_rate'>点击第二个内容</Option>
+                      <Option key={6} value='user_click_site_two_rate'>点击第三个内容</Option>
+                    </Select>
+                  )}
+                </FormItem>
+              </Col>
+              <Col md={6} sm={24}>
                 <FormItem label="日期区间">
                   {getFieldDecorator('dateRange', {
                     initialValue: query.startDate ? [moment(query.startDate), moment(query.endDate)] : null,
@@ -75,7 +92,7 @@ class ClickRate extends PureComponent {
                   )}
                 </FormItem>
               </Col>
-              <Col md={8} sm={24}>
+              <Col md={6} sm={24}>
                 <span>
                   <Button type="primary" htmlType="submit">
                     查询
@@ -90,12 +107,9 @@ class ClickRate extends PureComponent {
         </div>
         <Chart height={400} data={clickRateData} scale={cols} forceFit>
           <Legend />
-          <Axis name="month" />
+          <Axis name="date" />
           <Axis
-            name="temperature"
-            label={{
-              formatter: val => `${val}°C`
-            }}
+            name="stack"
           />
           <Tooltip
             crosshairs={{
@@ -104,17 +118,17 @@ class ClickRate extends PureComponent {
           />
           <Geom
             type="line"
-            position="month*temperature"
+            position="date*stack"
             size={2}
-            color="city"
+            color="type"
             shape="smooth"
           />
           <Geom
             type="point"
-            position="month*temperature"
+            position="date*stack"
             size={4}
             shape="circle"
-            color="city"
+            color="type"
             style={{
               stroke: "#fff",
               lineWidth: 1
