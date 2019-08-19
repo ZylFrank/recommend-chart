@@ -41,7 +41,7 @@ export default {
       yield put({
         type: 'save',
         payload: {
-          clickRateData: lintChart,
+          clickRateData: lintChart.result,
           loading: false,
         },
       })
@@ -69,12 +69,14 @@ export default {
           })
         }
         if (pathname === '/dashboard/clickRate') {
-          dispatch({
-            type: 'fetchClickRate',
-            payload: {
-              ...query
-            },
-          })
+          if (Object.keys(query).length > 0) {
+            dispatch({
+              type: 'fetchClickRate',
+              payload: {
+                ...query
+              },
+            })
+          }
         }
       });
     },

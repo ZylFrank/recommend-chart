@@ -23,16 +23,16 @@ class ClickRate extends PureComponent {
   
   render() {
     const { chart, form, history  } = this.props;
-    const { clickRateData, query } = chart;
+    const { clickRateData=[], query } = chart;
     const { getFieldDecorator, validateFields, resetFields } = form;
     const onSubmit = e => {
       e.preventDefault();
       validateFields((err, values) => {
         if (!err) {
-          const { dateRange, userType } = values;
+          const { dateRange, userType, type } = values;
           let search = qs.stringify({ userType });
           if (dateRange) {
-            search = qs.stringify({ userType, startDate: moment(dateRange[0]).format('YYYY-MM-DD'), endDate: moment(dateRange[1]).format('YYYY-MM-DD') });            
+            search = qs.stringify({ userType, type, startDate: moment(dateRange[0]).format('YYYY-MM-DD'), endDate: moment(dateRange[1]).format('YYYY-MM-DD') });            
           }
           history.push({search});
         }
@@ -45,7 +45,7 @@ class ClickRate extends PureComponent {
     };
 
     const cols = {
-      month: {
+      date: {
         range: [0, 1]
       }
     };
@@ -57,7 +57,8 @@ class ClickRate extends PureComponent {
               <Col md={6} sm={24}>
                 <FormItem label="用户类型">
                   {getFieldDecorator('userType', {
-                    initialValue: parseInt(query.userType, 10) || '',
+                    initialValue: parseInt(query.userType, 10),
+                    rules: [{ required: true, message: '请选择用户类型'}],
                   })(                  
                     <Select style={{width: '100%'}}>
                       <Option key={0} value={0}>非会员</Option>
@@ -68,8 +69,9 @@ class ClickRate extends PureComponent {
               </Col>
               <Col md={6} sm={24}>
                 <FormItem label="纬度">
-                  {getFieldDecorator('dateRange', {
-                    initialValue: ''
+                  {getFieldDecorator('type', {
+                    initialValue: query.type || '',
+                    rules: [{ required: true, message: '请选择纬度'}],
                   })(                  
                     <Select style={{width: '100%'}}>
                       <Option key={0} value='user_click_one_rate'>点击一个内容</Option>
@@ -87,6 +89,7 @@ class ClickRate extends PureComponent {
                 <FormItem label="日期区间">
                   {getFieldDecorator('dateRange', {
                     initialValue: query.startDate ? [moment(query.startDate), moment(query.endDate)] : null,
+                    rules: [{ required: true, message: '请选择日期区间'}],
                   })(                  
                     <RangePicker />
                   )}
@@ -109,7 +112,7 @@ class ClickRate extends PureComponent {
           <Legend />
           <Axis name="date" />
           <Axis
-            name="stack"
+            name="score"
           />
           <Tooltip
             crosshairs={{
@@ -118,14 +121,14 @@ class ClickRate extends PureComponent {
           />
           <Geom
             type="line"
-            position="date*stack"
+            position="date*score"
             size={2}
             color="type"
             shape="smooth"
           />
           <Geom
             type="point"
-            position="date*stack"
+            position="date*score"
             size={4}
             shape="circle"
             color="type"
